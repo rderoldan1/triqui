@@ -46,10 +46,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.63829786">
+            <state line="19" column="1" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="49" selection-start="353" selection-end="353" vertical-scroll-proportion="0.5673759">
               <folding />
             </state>
           </provider>
@@ -69,6 +78,7 @@
         <option value="$PROJECT_DIR$/simple_service.rb" />
         <option value="$PROJECT_DIR$/simple_client.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -397,7 +407,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.63829786">
+        <state line="19" column="1" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="49" selection-start="353" selection-end="353" vertical-scroll-proportion="0.5673759">
           <folding />
         </state>
       </provider>
