@@ -27,8 +27,13 @@ class Server
     end
   end
 
-  def valid_movement(move)
-
+  def reset_game
+    @board = [
+              ["_","_","_"],
+              ["_","_","_"],
+              ["_","_","_"]
+              ]
+    game
   end
 
   def game
@@ -38,6 +43,7 @@ class Server
     i = 0
     player = 0
     while i < 9
+      @list_users[player].log("New game, Good Luck and have fun!")
        @list_users[player].log("It's your turn #{player}")
        move = @list_users[player].movement
        puts "Move of player #{[player]} is #{move}"
@@ -50,7 +56,7 @@ class Server
          @list_users[player].log("We have a winner !")
          @list_users[0].print_board(@board)
          @list_users[1].print_board(@board)
-         break
+         reset_game
        else
            @list_users[0].print_board(@board)
            @list_users[1].print_board(@board)
