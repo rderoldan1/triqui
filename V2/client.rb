@@ -1,12 +1,12 @@
 require 'drb'
 require 'colorize'
-
+  
 class Client
   attr_accessor :server, :player
   include DRbUndumped
 
   def initialize(server, player)
-    DRb.start_service
+    DRb.start_service("druby://localhost:0")
     @server, @player = server, player
     log "Login on server at #{DRb.uri}"
     login
@@ -26,7 +26,7 @@ class Client
   end
 
   def log(message)
-    $stderr.puts "[Player #{@name} #{Time.now.strftime("On %D at %I:%M%p")}] #{message}"
+    $stderr.puts "[Player #{@name} #{Time.now.strftime("On %D at %I:%M%p")}] #{message}".blue
   end
 
   def log_error(message)
@@ -51,8 +51,8 @@ class Client
   end
 end
 
-if ARGV.length.eql? 1
-  server_uri = 'druby://localhost:' +  ARGV[0]
+if ARGV.length.eql? 2
+  server_uri = 'druby://localhost:' +  ARGV[1]
 else
   server_uri = 'druby://localhost:4000'
 end

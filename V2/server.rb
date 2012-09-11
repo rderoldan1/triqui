@@ -42,7 +42,6 @@ class Server
        move = @list_users[player].movement
        puts "Move of player #{[player]} is #{move}"
        code = position(move,player)
-       puts check_winner
        if code.eql? 1
          @list_users[player].log_error("Invalid Move, please chose a number within 1 and 9")
        elsif code.eql? 2
@@ -57,18 +56,18 @@ class Server
            end
            i += 1
        end
+       check_winner
     end
   end
 
   def check_winner
-    if @board[0,0] == @board[0,1]
-      puts "#YOLO"
+    letter = "X"
+    if @board[0,0].eql? letter
+      puts "Hola"
     else
-      puts "#SWAG"
+      puts "Chao"
     end
   end
-
-
 
   def position(move, player)
     letter = "X"
