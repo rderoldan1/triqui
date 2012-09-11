@@ -15,7 +15,7 @@ class Client
   def hello_from_server
     puts "Welcome to the best Tic-Tac-Toe"
   end
-
+ 
   def login
     @server.list_users(self)
   end
