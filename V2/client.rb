@@ -21,12 +21,16 @@ class Client
   end
 
   def movement
-    puts "tell me your movement"
+    puts "tell me your movement".blue
     move = $stdin.gets.chomp
   end
 
   def log(message)
     $stderr.puts "[Player #{@name} #{Time.now.strftime("On %D at %I:%M%p")}] #{message}"
+  end
+
+  def log_error(message)
+    puts "Error: #{message}".red
   end
 
   def print_board(board)
@@ -47,7 +51,7 @@ class Client
   end
 end
 
-server_uri = 'druby://192.168.1.70:4000'
+server_uri = 'druby://localhost:4000'
 server = DRbObject.new_with_uri(server_uri)
 client = Client.new(server,ARGV[0])
 DRb.thread.join

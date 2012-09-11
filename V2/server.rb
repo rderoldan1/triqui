@@ -4,7 +4,7 @@ class Server
   include DRbUndumped
 
   def initialize
-    DRb.start_service("druby://192.168.1.70:4000", self)
+    DRb.start_service("druby://localhost:4000", self)
     log("Start server at #{DRb.uri}")
     @list_users= []
     @board = [
@@ -23,7 +23,7 @@ class Server
     end
   end
 
-  def gets
+  def valid_movement(move)
 
   end
 
@@ -37,46 +37,85 @@ class Server
        @list_users[player].log("is your turn #{player} ")
        move = @list_users[player].movement
        puts "move of player #{[player]} is #{move}"
-       position(move,player)
-       @list_users[0].print_board(@board)
-       @list_users[1].print_board(@board)
-       if player.eql? 0
-         player = 1
+       code = position(move,player)
+       if code.eql? 1
+         @list_users[player].log_error("Invalid Move, please chose a number within 1 and 9")
+       elsif code.eql? 2
+         @list_users[player].log_error("Please choose another position")
        else
-         player = 0
+         puts check_winner
+         if check_winner
+           @list_users[0].log("Player #{player} won!")
+           @list_users[1].log("Player #{player} won!")
+           @list_users[0].print_board(@board)
+           @list_users[1].print_board(@board)
+           break
+         else
+           @list_users[0].print_board(@board)
+           @list_users[1].print_board(@board)
+           if player.eql? 0
+             player = 1
+           else
+             player = 0
+           end
+           i += 1
+         end
+
        end
-       i += 1
+
+
     end
 
   end
 
+  def check_winner
+        @board[0,0] and @board[0,1] and @board[0,2] or
+        @board[1,0] and @board[1,1] and @board[1,2] or
+        @board[2,0] and @board[2,1] and @board[2,2] or
+        @board[0,0] and @board[1,1] and @board[2,2] or
+        @board[0,2] and @board[1,1] and @board[2,0]
+
+  end
+
+
+
   def position(move, player)
     letter = "X"
+    exit_code = 0
     if player.eql? 0
       letter = "O"
     end
-    case move
+
+    p = case move
       when "1"
-        @board[0][0] = letter
+        [0,0]
       when "2"
-        @board[0][1] = letter
+        [0,1]
       when "3"
-        @board[0][2] = letter
+        [0,2]
       when "4"
-        @board[1][0] = letter
+        [1,0]
       when "5"
-        @board[1][1] = letter
+        [1,1]
       when "6"
-        @board[1][2] = letter
+        [1,2]
       when "7"
-        @board[2][0] = letter
+        [2,0]
       when "8"
-        @board[2][1] = letter
+        [2,1]
       when "9"
-        @board[2][2] = letter
+        [2,1]
       else
-        "error"
+        exit_code = 1
     end
+
+    if @board[p[0]][p[1]].eql? 0
+      @board[p[0]][p[1]] = letter
+      puts @board[p[0]][p[1]]
+    else
+      exit_code = 2
+    end
+    exit_code
   end
 
   def turn
