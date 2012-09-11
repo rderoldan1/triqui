@@ -1,4 +1,4 @@
-require 'drb' #ruby distributed
+require 'drb'
 require 'colorize'
 class Server
   include DRbUndumped
@@ -21,7 +21,7 @@ class Server
   def list_users(user)
     @list_users << user
     puts "user #{@list_users.count}"
-    user.log("welcome player")
+    user.log("Welcome player")
     if @list_users.count.eql? 2
       game
     end
@@ -61,18 +61,11 @@ class Server
   end
 
   def check_winner
-    
-        @board[0,0] and @board[0,1] and @board[0,2] and "X" or
-        @board[1,0] and @board[1,1] and @board[1,2] and "X" or
-        @board[2,0] and @board[2,1] and @board[2,2] and "X" or
-        @board[0,0] and @board[1,1] and @board[2,2] and "X" or
-        @board[0,2] and @board[1,1] and @board[2,0] and "X" or 
-        @board[0,0] and @board[0,1] and @board[0,2] and "O" or
-        @board[1,0] and @board[1,1] and @board[1,2] and "O" or
-        @board[2,0] and @board[2,1] and @board[2,2] and "O" or
-        @board[0,0] and @board[1,1] and @board[2,2] and "O" or
-        @board[0,2] and @board[1,1] and @board[2,0] and "O"
-        
+    if @board[0,0] == @board[0,1]
+      puts "#YOLO"
+    else
+      puts "#SWAG"
+    end
   end
 
 
@@ -123,8 +116,6 @@ class Server
   def log(message)
     puts "[Server #{Time.now.strftime("On %D at %I:%M%p")}] #{message}".blue
   end
-
-
 end
 server = Server.new
 DRb.thread.join()

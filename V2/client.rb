@@ -13,7 +13,7 @@ class Client
   end
 
   def hello_from_server
-    puts "welcome to the best 'triqui at the world'"
+    puts "Welcome to the best Tic-Tac-Toe"
   end
 
   def login
@@ -37,14 +37,14 @@ class Client
     puts "\n
                |          |
                |          |
-            #{board[0][0]}  |    #{board[0][1]}     |   #{board[0][2]}
+          #{board[0][0]}    |    #{board[0][1]}     |    #{board[0][2]}
      __________|__________|__________
                |          |
-            #{board[1][0]}  |    #{board[1][1]}     |   #{board[1][2]}
+          #{board[1][0]}    |    #{board[1][1]}     |    #{board[1][2]}
                |          |
      __________|__________|__________
                |          |
-            #{board[2][0]}  |    #{board[2][1]}     |   #{board[2][2]}
+          #{board[2][0]}    |    #{board[2][1]}     |    #{board[2][2]}
                |          |
                |          |"
 
