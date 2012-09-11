@@ -46,6 +46,8 @@ class Server
          @list_users[player].log_error("Invalid Move, please chose a number within 1 and 9")
        elsif code.eql? 2
          @list_users[player].log_error("Please choose another position")
+       elsif code.eql? 3
+         @list_users[player].log_error("We have a winner !")
        else
            @list_users[0].print_board(@board)
            @list_users[1].print_board(@board)
@@ -59,11 +61,26 @@ class Server
     end
   end
 
-  def check_winner
-    if @board[0,0] == "O"
-      puts "Hola"
+  def check_winner(letter, player)
+    code = 0
+    if @board[0][0] == @board[0][1] and @board[0][1] == @board[0][2] and @board[0][2] == letter
+      code = 3
+    elsif @board[1][0] == @board[1][1] and @board[1][1] == @board[1][2] and @board[1][2] == letter
+      code = 3
+    elsif @board[2][0] == @board[2][1] and @board[2][1] == @board[2][2] and @board[2][2] == letter
+      code = 3
+    elsif @board[0][0] == @board[1][0] and @board[1][0] == @board[2][0] and @board[2][0] == letter
+      code = 3
+    elsif @board[0][1] == @board[1][1] and @board[1][1] == @board[2][1] and @board[2][1] == letter
+      code = 3
+    elsif @board[0][2] == @board[1][2] and @board[1][2] == @board[2][2] and @board[2][2] == letter
+      code = 3
+    elsif @board[0][0] == @board[1][1] and @board[1][1] == @board[2][2] and @board[2][2] == letter
+      code = 3
+    elsif @board[0][2] == @board[1][1] and @board[1][1] == @board[2][0] and @board[2][0] == letter
+      code = 3 
     else
-      puts "Chao"
+      puts "No winner yet."
     end
   end
 
@@ -99,8 +116,7 @@ class Server
 
     if @board[p[0]][p[1]].eql? "_"
       @board[p[0]][p[1]] = letter
-      puts @board[p[0]][p[1]]
-      check_winner
+      exit_code = check_winner(letter, player)
     else
       exit_code = 2
     end
