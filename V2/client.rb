@@ -21,7 +21,7 @@ class Client
   end
 
   def movement
-    puts "tell me your movement".blue
+    puts "Make a play".blue
     move = $stdin.gets.chomp
   end
 
@@ -51,7 +51,11 @@ class Client
   end
 end
 
-server_uri = 'druby://localhost:4000'
+if ARGV.length.eql? 1
+  server_uri = 'druby://localhost:' +  ARGV[0]
+else
+  server_uri = 'druby://localhost:4000'
+end
 server = DRbObject.new_with_uri(server_uri)
 client = Client.new(server,ARGV[0])
 DRb.thread.join

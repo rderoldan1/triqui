@@ -4,14 +4,18 @@ class Server
   include DRbUndumped
 
   def initialize
-    DRb.start_service("druby://localhost:4000", self)
-    log("Start server at #{DRb.uri}")
-    @list_users= []
-    @board = [
-              ["_","_","_"],
-              ["_","_","_"],
-              ["_","_","_"]
-              ]
+    if ARGV.length.eql? 1
+      DRb.start_service("druby://localhost:#{ARGV[0]}", self)
+    else
+      DRb.start_service("druby://localhost:4000", self)
+    end  
+      log("Start server at #{DRb.uri}")
+      @list_users= []
+      @board = [
+                ["_","_","_"],
+                ["_","_","_"],
+                ["_","_","_"]
+                ]
   end
 
   def list_users(user)
@@ -34,10 +38,11 @@ class Server
     i = 0
     player = 0
     while i < 9
-       @list_users[player].log("is your turn #{player} ")
+       @list_users[player].log("It's your turn #{player}")
        move = @list_users[player].movement
-       puts "move of player #{[player]} is #{move}"
+       puts "Move of player #{[player]} is #{move}"
        code = position(move,player)
+       puts check_winner
        if code.eql? 1
          @list_users[player].log_error("Invalid Move, please chose a number within 1 and 9")
        elsif code.eql? 2
