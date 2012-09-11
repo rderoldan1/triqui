@@ -8,9 +8,9 @@ class Server
     log("Start server at #{DRb.uri}")
     @list_users= []
     @board = [
-              [0,0,0],
-              [0,0,0],
-              [0,0,0]
+              ["_","_","_"],
+              ["_","_","_"],
+              ["_","_","_"]
               ]
   end
 
@@ -43,14 +43,6 @@ class Server
        elsif code.eql? 2
          @list_users[player].log_error("Please choose another position")
        else
-         puts check_winner
-         if check_winner
-           @list_users[0].log("Player #{player} won!")
-           @list_users[1].log("Player #{player} won!")
-           @list_users[0].print_board(@board)
-           @list_users[1].print_board(@board)
-           break
-         else
            @list_users[0].print_board(@board)
            @list_users[1].print_board(@board)
            if player.eql? 0
@@ -59,22 +51,23 @@ class Server
              player = 0
            end
            i += 1
-         end
-
        end
-
-
     end
-
   end
 
   def check_winner
-        @board[0,0] and @board[0,1] and @board[0,2] or
-        @board[1,0] and @board[1,1] and @board[1,2] or
-        @board[2,0] and @board[2,1] and @board[2,2] or
-        @board[0,0] and @board[1,1] and @board[2,2] or
-        @board[0,2] and @board[1,1] and @board[2,0]
-
+    
+        @board[0,0] and @board[0,1] and @board[0,2] and "X" or
+        @board[1,0] and @board[1,1] and @board[1,2] and "X" or
+        @board[2,0] and @board[2,1] and @board[2,2] and "X" or
+        @board[0,0] and @board[1,1] and @board[2,2] and "X" or
+        @board[0,2] and @board[1,1] and @board[2,0] and "X" or 
+        @board[0,0] and @board[0,1] and @board[0,2] and "O" or
+        @board[1,0] and @board[1,1] and @board[1,2] and "O" or
+        @board[2,0] and @board[2,1] and @board[2,2] and "O" or
+        @board[0,0] and @board[1,1] and @board[2,2] and "O" or
+        @board[0,2] and @board[1,1] and @board[2,0] and "O"
+        
   end
 
 
@@ -82,7 +75,7 @@ class Server
   def position(move, player)
     letter = "X"
     exit_code = 0
-    if player.eql? 0
+    if player.eql? 1
       letter = "O"
     end
 
@@ -104,12 +97,12 @@ class Server
       when "8"
         [2,1]
       when "9"
-        [2,1]
+        [2,2]
       else
         exit_code = 1
     end
 
-    if @board[p[0]][p[1]].eql? 0
+    if @board[p[0]][p[1]].eql? "_"
       @board[p[0]][p[1]] = letter
       puts @board[p[0]][p[1]]
     else
