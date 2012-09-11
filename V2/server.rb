@@ -56,13 +56,11 @@ class Server
            end
            i += 1
        end
-       check_winner
     end
   end
 
   def check_winner
-    letter = "X"
-    if @board[0,0].eql? letter
+    if @board[0,0] == "O"
       puts "Hola"
     else
       puts "Chao"
@@ -102,6 +100,7 @@ class Server
     if @board[p[0]][p[1]].eql? "_"
       @board[p[0]][p[1]] = letter
       puts @board[p[0]][p[1]]
+      check_winner
     else
       exit_code = 2
     end
