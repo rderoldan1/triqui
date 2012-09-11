@@ -37,6 +37,9 @@ class Server
        @list_users[player].log("is your turn #{player} ")
        move = @list_users[player].movement
        puts "move of player #{[player]} is #{move}"
+       position(move,player)
+       @list_users[0].print_board(@board)
+       @list_users[1].print_board(@board)
        if player.eql? 0
          player = 1
        else
@@ -45,6 +48,35 @@ class Server
        i += 1
     end
 
+  end
+
+  def position(move, player)
+    letter = "X"
+    if player.eql? 0
+      letter = "O"
+    end
+    case move
+      when "1"
+        @board[0][0] = letter
+      when "2"
+        @board[0][1] = letter
+      when "3"
+        @board[0][2] = letter
+      when "4"
+        @board[1][0] = letter
+      when "5"
+        @board[1][1] = letter
+      when "6"
+        @board[1][2] = letter
+      when "7"
+        @board[2][0] = letter
+      when "8"
+        @board[2][1] = letter
+      when "9"
+        @board[2][2] = letter
+      else
+        "error"
+    end
   end
 
   def turn

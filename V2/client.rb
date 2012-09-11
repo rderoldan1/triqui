@@ -22,11 +22,7 @@ class Client
 
   def movement
     puts "tell me your movement"
-    move = rand(9)
-    gets
-    puts move
-    move
-
+    move = $stdin.gets.chomp
   end
 
   def log(message)
@@ -37,14 +33,14 @@ class Client
     puts "\n
                |          |
                |          |
-            #{board[0][0]}  |    #{board[0][1]}     |   #{board[0][0]}
+            #{board[0][0]}  |    #{board[0][1]}     |   #{board[0][2]}
      __________|__________|__________
                |          |
-            #{board[0][0]}  |    #{board[0][1]}     |   #{board[0][0]}
+            #{board[1][0]}  |    #{board[1][1]}     |   #{board[1][2]}
                |          |
      __________|__________|__________
                |          |
-            #{board[0][0]}  |    #{board[0][1]}     |   #{board[0][0]}
+            #{board[2][0]}  |    #{board[2][1]}     |   #{board[2][2]}
                |          |
                |          |"
 
