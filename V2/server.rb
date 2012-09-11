@@ -47,7 +47,10 @@ class Server
        elsif code.eql? 2
          @list_users[player].log_error("Please choose another position")
        elsif code.eql? 3
-         @list_users[player].log_error("We have a winner !")
+         @list_users[player].log("We have a winner !")
+         @list_users[0].print_board(@board)
+         @list_users[1].print_board(@board)
+         break
        else
            @list_users[0].print_board(@board)
            @list_users[1].print_board(@board)
